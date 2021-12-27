@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_home"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/actionHome">
+
+    <fragment
+        android:id="@+id/actionHome"
+        android:name="apps.eduraya.e_parking.ui.home.HomeFragment"
+        android:label="action_home"
+        tools:layout="@layout/home_fragment" />
+
+    <fragment
+        android:id="@+id/actionProfile"
+        android:name="apps.eduraya.e_parking.ui.profile.ProfileFragment"
+        android:label="action_profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>

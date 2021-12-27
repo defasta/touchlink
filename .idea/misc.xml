@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/backgroud_home.xml" value="0.3828125" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/bg_button_primary.xml" value="0.3828125" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/bg_circle_radius.xml" value="0.271875" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/bg_login1.xml" value="0.12962962962962962" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/bg_rounded_bottom.xml" value="0.3828125" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/bg_rounded_top.xml" value="0.271875" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/card_round_bottom.xml" value="0.3828125" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/ic_baseline_add_card_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/ic_location.xml" value="0.3828125" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/ic_rute.xml" value="0.271875" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/shape_bottom_nav.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_auth.xml" value="0.1" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_home.xml" value="0.33" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_maps.xml" value="0.35597826086956524" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_valet_booking.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/fragment_base.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/fragment_login.xml" value="0.2598958333333333" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/home_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/item_list_feature.xml" value="0.25" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/item_list_valet.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/list_item_location.xml" value="0.25" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/toolbar_maps.xml" value="0.35597826086956524" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

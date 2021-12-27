@@ -1,4 +1,4 @@
-package apps.eduraya.e_parking.ui.maps.adapter
+package apps.eduraya.e_parking.ui.maps
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
