@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "537278720868",
+    "project_id": "e-parking-336314",
+    "storage_bucket": "e-parking-336314.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537278720868:android:47c6cbd9e1804742ada871",
+        "android_client_info": {
+          "package_name": "apps.eduraya.e_parking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537278720868-kjnrmcdsg65e2ccaaorepo07o37po9up.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMhQBPYazEchO26Qz8bxMtHLfG-ECcU0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537278720868-kjnrmcdsg65e2ccaaorepo07o37po9up.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
