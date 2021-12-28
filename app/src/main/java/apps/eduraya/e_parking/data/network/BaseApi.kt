@@ -1,4 +1,4 @@
-package apps.eduraya.e_parking.data.network.auth
+package apps.eduraya.e_parking.data.network
 
 import okhttp3.ResponseBody
 import retrofit2.http.POST

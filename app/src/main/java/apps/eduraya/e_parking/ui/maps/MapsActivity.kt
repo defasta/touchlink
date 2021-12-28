@@ -22,7 +22,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import apps.eduraya.e_parking.R
-import apps.eduraya.e_parking.data.UserPreferences
+import apps.eduraya.e_parking.data.db.UserPreferences
 import apps.eduraya.e_parking.data.network.Resource
 import apps.eduraya.e_parking.data.responses.ListDataPlace
 import apps.eduraya.e_parking.databinding.ActivityMapsBinding
@@ -182,12 +182,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     private fun getMarker(placeResultsArrayList: ArrayList<ListDataPlace?>?) {
         for (i in placeResultsArrayList?.indices!!) {
-            currentLatLng = LatLng(strCurrentLatitude, strCurrentLongitude)
+//            currentLatLng = LatLng(strCurrentLatitude, strCurrentLongitude)
             mapsView.isMyLocationEnabled = true
-            mapsView.addMarker(MarkerOptions()
-                .title("Lokasi Anda")
-                .position(currentLatLng)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))
+//            mapsView.addMarker(MarkerOptions()
+//                .title("Lokasi Anda")
+//                .position(currentLatLng)
+//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))
 
             //set LatLong from API
             val latLngMarker = LatLng(

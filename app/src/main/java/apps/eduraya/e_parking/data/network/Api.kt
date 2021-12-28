@@ -1,9 +1,10 @@
-package apps.eduraya.e_parking.data.network.auth
+package apps.eduraya.e_parking.data.network
 
 import apps.eduraya.e_parking.data.responses.GetPlacesResponse
 import apps.eduraya.e_parking.data.responses.LoginResponse
 import apps.eduraya.e_parking.data.responses.SignUpResponse
 import apps.eduraya.e_parking.data.responses.getplace.GetQuotasByPlaceResponse
+import apps.eduraya.e_parking.data.responses.user.GetDataUserResponse
 import retrofit2.http.*
 
 interface Api: BaseApi {
@@ -22,6 +23,11 @@ interface Api: BaseApi {
         @Field("password") password: String,
         @Field("password_confirmation") password_confirmation: String
     ): SignUpResponse
+
+    @GET("auth/me")
+    suspend fun getUserData(
+        @Header("Authorization") authHeader: String,
+    ): GetDataUserResponse
 
     @GET("places")
     suspend fun getPlaces(

@@ -38,7 +38,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(
                         viewModel.saveAccessTokens(
                             it.value.data?.token!!
                         )
-                        Log.d("TOKEN USER", it.value.data?.token!!)
+                        viewModel.insertUserInfoDB(
+                            it.value.data.user!!
+                        )
+                        Log.d("TOKEN USER", it.value.data.token!!.toString())
+                        Log.d("USER INFO", it.value.data.user.toString())
                         requireActivity().startNewActivity(HomeActivity::class.java)
                     }
                 }

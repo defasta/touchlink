@@ -1,4 +1,4 @@
-package apps.eduraya.e_parking.data
+package apps.eduraya.e_parking.data.db
 
 import android.content.Context
 import androidx.datastore.core.DataStore

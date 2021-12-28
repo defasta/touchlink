@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.core.graphics.red
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -41,11 +43,14 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
             when(it){
                 is Resource.Success ->{
                     lifecycleScope.launch {
-                        viewModel.saveAccessTokens(
-                            it.value.data?.token!!
-                        )
-                        Log.d("TOKEN USER", it.value.data.token.toString())
-                        requireActivity().startNewActivity(HomeActivity::class.java)
+//                        viewModel.saveAccessTokens(
+//                            it.value.data?.token!!
+//                        )
+                        Log.d("TOKEN USER", it.value.data?.token.toString())
+                        //requireActivity().startNewActivity(HomeActivity::class.java)
+                        requireView().snackbar("Berhasil membuat akun!")
+                        val direction = SignUpFragmentDirections.actionSignUpFragmentToLoginFragment()
+                        authentionNavController?.navigate(direction)
                     }
                 }
                 is Resource.Failure -> handleApiError(it){signUp()}
