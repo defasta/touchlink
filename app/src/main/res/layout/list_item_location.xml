@@ -103,12 +103,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_rute"
-                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/ic_baseline_edit_calendar_24"
                     android:gravity="center"
-                    android:padding="5dp"
+                    android:layout_margin="8dp"
                     android:text="Booking tempat"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"

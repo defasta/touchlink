@@ -32,6 +32,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
             override fun onChanged(t: List<UserInfo>?) {
                 t?.forEach {
                     binding.username.text = it.name
+                    binding.tvSaldo.text = "Rp. ${it.balance.toString()}"
                 }
             }
 

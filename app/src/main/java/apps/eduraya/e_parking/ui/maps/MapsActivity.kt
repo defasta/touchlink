@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,10 @@ import apps.eduraya.e_parking.R
 import apps.eduraya.e_parking.data.db.UserPreferences
 import apps.eduraya.e_parking.data.network.Resource
 import apps.eduraya.e_parking.data.responses.ListDataPlace
+import apps.eduraya.e_parking.data.responses.UserInfo
+import apps.eduraya.e_parking.data.responses.getplace.ListDataQuotasByPlace
 import apps.eduraya.e_parking.databinding.ActivityMapsBinding
+import apps.eduraya.e_parking.ui.home.HomeActivity
 import apps.eduraya.e_parking.ui.maps.adapter.MapsAdapter
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -107,6 +111,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
+    override fun onBackPressed() {
+        startActivity(Intent(this, HomeActivity::class.java))
+        finishAndRemoveTask()
+    }
+
     private fun checkIfAlreadyhavePermission(): Boolean {
         val result = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
         return result == PackageManager.PERMISSION_GRANTED
@@ -127,7 +136,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
 
     override fun onMapReady(googleMap: GoogleMap) {
         mapsView = googleMap
@@ -157,30 +165,34 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             placeViewModel.getPlacesResult.observe(this, androidx.lifecycle.Observer {getPlaceResponse ->
                 when(getPlaceResponse){
                     is Resource.Loading -> progressDialog.show()
-                    is Resource.Success -> lifecycleScope.launch {
-                        mapsAdapter.setLocationAdapter(getPlaceResponse.value.data?.data)
-                        getMarker(getPlaceResponse.value.data?.data)
-                        progressDialog.dismiss()
-                    }
+                    is Resource.Success ->
+                        quotasViewModel.getQuotasByPlaceResult.observe(this, androidx.lifecycle.Observer {
+                            when(it){
+                                is Resource.Loading -> progressDialog.show()
+                                is Resource.Success -> lifecycleScope.launch {
+                                    mapsAdapter.setQuotasAdapter(it.value.data)
+                                    mapsAdapter.setLocationAdapter(getPlaceResponse.value.data?.data)
+                                    getMarker(getPlaceResponse.value.data?.data, it.value.data)
+                                    progressDialog.dismiss()
+                                }
+                                is Resource.Failure -> Toast.makeText(this, "Gagal memuat kuota kendaraan", Toast.LENGTH_SHORT).show()
+                            }
+                        })
+//                    lifecycleScope.launch {
+//                        mapsAdapter.setLocationAdapter(getPlaceResponse.value.data?.data)
+//                        getMarker(getPlaceResponse.value.data?.data)
+//                        progressDialog.dismiss()
+//                    }
                     is Resource.Failure -> Toast.makeText(this, "Gagal mendapatkan lokasi", Toast.LENGTH_SHORT).show()
                 }
             })
-            quotasViewModel.getQuotasByPlaceResult.observe(this, androidx.lifecycle.Observer {
-                when(it){
-                    is Resource.Loading -> progressDialog.show()
-                    is Resource.Success -> lifecycleScope.launch {
-                        mapsAdapter.setQuotasAdapter(it.value.data)
-                        progressDialog.dismiss()
-                    }
-                    is Resource.Failure -> Toast.makeText(this, "Gagal memuat kuota kendaraan", Toast.LENGTH_SHORT).show()
-                }
-            })
+
         })
 
     }
 
     @SuppressLint("MissingPermission")
-    private fun getMarker(placeResultsArrayList: ArrayList<ListDataPlace?>?) {
+    private fun getMarker(placeResultsArrayList: ArrayList<ListDataPlace?>?, quotasResultsByArrayList: ArrayList<ListDataQuotasByPlace>?) {
         for (i in placeResultsArrayList?.indices!!) {
 //            currentLatLng = LatLng(strCurrentLatitude, strCurrentLongitude)
             mapsView.isMyLocationEnabled = true
@@ -199,7 +211,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 MarkerOptions()
                     .position(latLngMarker)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                    .title(placeResultsArrayList[i]?.name))
+                    .title(quotasResultsByArrayList!![i]?.quotaValet.toString() +" kuota parkir di "+placeResultsArrayList[i]?.name))
+                    .showInfoWindow()
 
             //show Marker
             val latLngResult = LatLng(placeResultsArrayList[0]?.lat!!,
@@ -261,4 +274,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 }
+
 
