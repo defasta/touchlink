@@ -14,6 +14,12 @@ fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {
     }
 }
 
+fun <A : Activity> Activity.startAnActivity(activity: Class<A>) {
+    Intent(this, activity).also {
+        startActivity(it)
+    }
+}
+
 fun View.visible(isVisible: Boolean) {
     visibility = if (isVisible) View.VISIBLE else View.GONE
 }

@@ -34,8 +34,9 @@ interface Api: BaseApi {
         @Header("Authorization") authHeader: String,
     ): GetPlacesResponse
 
-    @GET("places/1/quotas")
+    @GET("places/{id}/quotas")
     suspend fun getQuotasByPlace(
         @Header("Authorization") authHeader: String,
+        @Path("id") id: String,
     ): GetQuotasByPlaceResponse
 }

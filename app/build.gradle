@@ -20,6 +20,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -84,6 +85,10 @@ dependencies {
 
     implementation 'androidx.room:room-runtime:2.4.0'
     kapt 'androidx.room:room-compiler:2.4.0'
+
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
 }
 kapt {
     correctErrorTypes true

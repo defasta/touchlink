@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import apps.eduraya.e_parking.data.responses.ListDataPlace
 import apps.eduraya.e_parking.data.responses.getplace.ListDataQuotasByPlace
 import apps.eduraya.e_parking.databinding.ListItemLocationBinding
+import apps.eduraya.e_parking.ui.maps.QuotasByPlaceViewModel
 import apps.eduraya.e_parking.ui.valet.ValetBookingActivity
 
 class MapsAdapter(private val context: Context) : RecyclerView.Adapter<MapsAdapter.MapsViewHolder>() {
 //
 //    private val modelResultArrayList = ArrayList<ModelResults>()
-
     private val placeResultArrayList = ArrayList<ListDataPlace?>()
     private val quotasResultArrayList = ArrayList<ListDataQuotasByPlace?>()
 
@@ -26,15 +28,11 @@ class MapsAdapter(private val context: Context) : RecyclerView.Adapter<MapsAdapt
 //        notifyDataSetChanged()
 //    }
 
-    fun setLocationAdapter(items: ArrayList<ListDataPlace?>?) {
+    fun setLocationAdapter(itemsPlace: ArrayList<ListDataPlace?>?) {
         placeResultArrayList.clear()
-        placeResultArrayList.addAll(items!!)
-        notifyDataSetChanged()
-    }
-
-    fun setQuotasAdapter(items: ArrayList<ListDataQuotasByPlace>?){
-        quotasResultArrayList.clear()
-        quotasResultArrayList.addAll(items!!)
+//        quotasResultArrayList.clear()
+        placeResultArrayList.addAll(itemsPlace!!)
+//        quotasResultArrayList.addAll(itemsQuotas!!)
         notifyDataSetChanged()
     }
 
@@ -85,7 +83,7 @@ class MapsAdapter(private val context: Context) : RecyclerView.Adapter<MapsAdapt
 
     override fun onBindViewHolder(holder: MapsViewHolder, position: Int) {
         val placeResult = placeResultArrayList[position]
-        val quotasResult = quotasResultArrayList[position]
+        val quotasResult = quotasResultArrayList
 
         //set rating
 //        val newValue = modelResult.rating.toDouble()
@@ -94,7 +92,26 @@ class MapsAdapter(private val context: Context) : RecyclerView.Adapter<MapsAdapt
 //        holder.ratingBar.rating = newValue.toFloat()
         holder.tvNamaJalan.text = placeResult?.address
         holder.tvNamaLokasi.text = placeResult?.name
-        holder.tvSpace.text = "Tersedia "+quotasResult?.quotaValet.toString() + " tempat parkir kosong"
+//        holder.tvSpaceMobilReguler.isVisible = false
+//        holder.tvSpaceMobilValet.isVisible = false
+//        holder.tvSpaceMotorValet.isVisible = false
+//        holder.tvSpaceMotorReguler.isVisible = false
+
+//        quotasResult.forEach {
+//            if (it?.vehicleId.toString() == "1"){
+//                holder.tvSpaceMotorValet.text = it?.quotaValet?.toString() +" Sepeda Motor"
+//                holder.tvSpaceMotorReguler.text = it?.quotaRegular.toString() + " Sepeda Motor"
+//                holder.tvSpaceMotorValet.isVisible = true
+//                holder.tvSpaceMotorReguler.isVisible = true
+//            }
+//            if(it?.vehicleId.toString() == "2"){
+//                holder.tvSpaceMobilValet.text = it?.quotaValet.toString() +" Mobil"
+//                holder.tvSpaceMobilReguler.text == it?.quotaRegular.toString() + " Mobil"
+//                holder.tvSpaceMobilReguler.isVisible = false
+//                holder.tvSpaceMobilValet.isVisible = false
+//            }
+//
+//        }
 
         //set data to share & intent
         val strPlaceId = placeResultArrayList[position]?.id
@@ -132,7 +149,10 @@ class MapsAdapter(private val context: Context) : RecyclerView.Adapter<MapsAdapt
         var linearRute: LinearLayout
         var tvNamaJalan: TextView
         var tvNamaLokasi: TextView
-        var tvSpace: TextView
+        var tvSpaceMobilValet: TextView
+        var tvSpaceMotorValet: TextView
+        var tvSpaceMobilReguler: TextView
+        var tvSpaceMotorReguler: TextView
 //        var imageShare: ImageView
 //        var ratingBar: RatingBar
 
@@ -141,7 +161,10 @@ class MapsAdapter(private val context: Context) : RecyclerView.Adapter<MapsAdapt
             tvNamaJalan = itemView.tvNamaJalan
             tvNamaLokasi = itemView.tvNamaLokasi
 //            imageShare = itemView.imageShare
-            tvSpace = itemView.tvSpace
+            tvSpaceMobilValet = itemView.tvSpaceMobilValet
+            tvSpaceMotorValet = itemView.tvSpaceMotorValet
+            tvSpaceMobilReguler = itemView.tvSpaceMobilReguler
+            tvSpaceMotorReguler = itemView.tvSpaceMotorReguler
         }
     }
 

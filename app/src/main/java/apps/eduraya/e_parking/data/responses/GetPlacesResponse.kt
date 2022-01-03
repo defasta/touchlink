@@ -47,8 +47,26 @@ data class ListDataPlace(
     val lng: Double? = null,
     val name: String? = null,
     @SerializedName("updated_at")
-    val updatedAt: String? = null
+    val updatedAt: String? = null,
+//    val quotas: ArrayList<Quotas?>? = null
 ):Parcelable
+
+//@Parcelize
+//data class Quotas(
+//    @SerializedName("created_at")
+//    val createdAt: String? = null,
+//    val id: Int? = null,
+//    @SerializedName("place_id")
+//    val placeId: Int? = null,
+//    @SerializedName("quota_regular")
+//    val quotaRegular: Int? = null,
+//    @SerializedName("quota_valet")
+//    val quotaValet: Int? = null,
+//    @SerializedName("updated_at")
+//    val updatedAt: String? = null,
+//    @SerializedName("vehicle_id")
+//    val vehicleId: Int? = null
+//):Parcelable
 
 @Parcelize
 data class Link(

@@ -156,33 +156,33 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //get multiple marker
     private fun getLocationViewModel() {
-
         val userPreferences = UserPreferences(this)
         userPreferences.accessToken.asLiveData().observe(this, androidx.lifecycle.Observer { token ->
             placeViewModel.setPlaceResult("Bearer $token")
-            quotasViewModel.setQuotasByResult("Bearer $token")
             Log.d("TOKENNYA USER", token!!)
             placeViewModel.getPlacesResult.observe(this, androidx.lifecycle.Observer {getPlaceResponse ->
                 when(getPlaceResponse){
                     is Resource.Loading -> progressDialog.show()
                     is Resource.Success ->
-                        quotasViewModel.getQuotasByPlaceResult.observe(this, androidx.lifecycle.Observer {
-                            when(it){
-                                is Resource.Loading -> progressDialog.show()
-                                is Resource.Success -> lifecycleScope.launch {
-                                    mapsAdapter.setQuotasAdapter(it.value.data)
-                                    mapsAdapter.setLocationAdapter(getPlaceResponse.value.data?.data)
-                                    getMarker(getPlaceResponse.value.data?.data, it.value.data)
-                                    progressDialog.dismiss()
-                                }
-                                is Resource.Failure -> Toast.makeText(this, "Gagal memuat kuota kendaraan", Toast.LENGTH_SHORT).show()
-                            }
-                        })
-//                    lifecycleScope.launch {
-//                        mapsAdapter.setLocationAdapter(getPlaceResponse.value.data?.data)
-//                        getMarker(getPlaceResponse.value.data?.data)
-//                        progressDialog.dismiss()
-//                    }
+//                        getPlaceResponse.value.data?.data?.forEach {
+//                            quotasViewModel.setQuotasByResult("Bearer $token", it?.id.toString())
+//                            quotasViewModel.getQuotasByPlaceResult.observe(this, androidx.lifecycle.Observer {
+//                                when(it){
+//                                    is Resource.Loading -> progressDialog.show()
+//                                    is Resource.Success -> lifecycleScope.launch {
+//                                        mapsAdapter.setLocationAdapter(getPlaceResponse.value.data?.data, it.value.data!!)
+//                                        getMarker(getPlaceResponse.value.data?.data, it.value.data)
+//                                        progressDialog.dismiss()
+//                                    }
+//                                    is Resource.Failure -> Toast.makeText(this, "Gagal memuat kuota kendaraan", Toast.LENGTH_SHORT).show()
+//                                }
+//                            })
+//                        }
+                    lifecycleScope.launch {
+                        mapsAdapter.setLocationAdapter(getPlaceResponse.value.data?.data)
+                        getMarker(getPlaceResponse.value.data?.data)
+                        progressDialog.dismiss()
+                    }
                     is Resource.Failure -> Toast.makeText(this, "Gagal mendapatkan lokasi", Toast.LENGTH_SHORT).show()
                 }
             })
@@ -192,7 +192,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     @SuppressLint("MissingPermission")
-    private fun getMarker(placeResultsArrayList: ArrayList<ListDataPlace?>?, quotasResultsByArrayList: ArrayList<ListDataQuotasByPlace>?) {
+    private fun getMarker(placeResultsArrayList: ArrayList<ListDataPlace?>?) {
         for (i in placeResultsArrayList?.indices!!) {
 //            currentLatLng = LatLng(strCurrentLatitude, strCurrentLongitude)
             mapsView.isMyLocationEnabled = true
@@ -211,8 +211,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 MarkerOptions()
                     .position(latLngMarker)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                    .title(quotasResultsByArrayList!![i]?.quotaValet.toString() +" kuota parkir di "+placeResultsArrayList[i]?.name))
+//                    .title(quotasResultsByArrayList!![i]?.quotaValet.toString() +" kuota parkir di "+placeResultsArrayList!![i]?.name))
+                    .title(placeResultsArrayList!![i]?.name))
                     .showInfoWindow()
+
 
             //show Marker
             val latLngResult = LatLng(placeResultsArrayList[0]?.lat!!,
@@ -234,6 +236,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mapsView.addMarker(MarkerOptions()
                 .position(markerPosition)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
+//                .showInfoWindow()
+
             var markerSelected = -1
             for (i in placeResultsArrayList?.indices!!) {
                 if (markerPosition.latitude == placeResultsArrayList[i]?.lat && markerPosition.longitude == placeResultsArrayList[i]?.lng) {
@@ -245,7 +249,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             mapsAdapter.notifyDataSetChanged()
             binding.rvListLocation.smoothScrollToPosition(markerSelected)
-            marker.showInfoWindow()
+//            marker.showInfoWindow()
             false
         }
     }

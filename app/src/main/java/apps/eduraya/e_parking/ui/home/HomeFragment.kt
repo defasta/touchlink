@@ -11,9 +11,11 @@ import androidx.lifecycle.Observer
 import apps.eduraya.e_parking.R
 import apps.eduraya.e_parking.data.responses.UserInfo
 import apps.eduraya.e_parking.databinding.HomeFragmentBinding
+import apps.eduraya.e_parking.startAnActivity
 import apps.eduraya.e_parking.startNewActivity
 import apps.eduraya.e_parking.ui.base.BaseFragment
 import apps.eduraya.e_parking.ui.maps.MapsActivity
+import apps.eduraya.e_parking.ui.myqr.MyQrActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,8 +26,12 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.cvValet.setOnClickListener {
-            requireActivity().startNewActivity(MapsActivity::class.java)
+        binding.cvSearch.setOnClickListener {
+            requireActivity().startAnActivity(MapsActivity::class.java)
+        }
+
+        binding.cvMyqr.setOnClickListener {
+            requireActivity().startAnActivity(MyQrActivity::class.java)
         }
 
         viewModel.getUserInfoDBObserver().observe(this,object : Observer<List<UserInfo>>{

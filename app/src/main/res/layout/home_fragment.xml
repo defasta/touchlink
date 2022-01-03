@@ -175,7 +175,7 @@
                         android:orientation="horizontal">
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/cv_valet"
+                            android:id="@+id/cv_myqr"
                             android:layout_width="50dp"
                             android:layout_height="80dp"
                             android:layout_gravity="center"
@@ -214,7 +214,7 @@
                                         android:layout_marginStart="16dp"
                                         android:layout_marginEnd="16dp"
                                         android:layout_marginBottom="5dp"
-                                        android:text="Valetbook"
+                                        android:text="My QR"
                                         android:textColor="@color/white"
                                         android:textSize="12sp"
                                         app:layout_constraintBottom_toBottomOf="parent"
@@ -228,7 +228,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="30dp"
                                         android:layout_marginTop="16dp"
-                                        android:src="@drawable/ic_baseline_edit_calendar_24"
+                                        android:src="@drawable/ic_baseline_qr_code_24"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"

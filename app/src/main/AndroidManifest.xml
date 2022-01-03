@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".MyApplication"
@@ -15,12 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.E_Parking">
         <activity
+            android:name=".ui.scan.ScanQrActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.myqr.MyQrActivity"
+            android:exported="true"
+            android:parentActivityName=".ui.home.HomeActivity"/>
+        <activity
             android:name=".ui.valet.ValetBookingActivity"
             android:exported="true" />
         <activity
             android:name=".ui.maps.MapsActivity"
             android:exported="true"
-            android:parentActivityName=".ui.home.HomeActivity"/>
+            android:parentActivityName=".ui.home.HomeActivity" />
         <activity android:name=".ui.auth.AuthActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity
@@ -32,6 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBMhQBPYazEchO26Qz8bxMtHLfG-ECcU0c" />

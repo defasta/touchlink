@@ -33,8 +33,8 @@ class AppsRepository @Inject constructor(
         api.getPlaces(token)
     }
 
-    suspend fun getQuotasByPlace(token: String) = safeApiCall {
-        api.getQuotasByPlace(token)
+    suspend fun getQuotasByPlace(token: String, id:String) = safeApiCall {
+        api.getQuotasByPlace(token,id)
     }
 
     fun getUserInfoDB():List<UserInfo>{

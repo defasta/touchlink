@@ -21,8 +21,8 @@ class QuotasByPlaceViewModel @Inject constructor(
     val getQuotasByPlaceResult: LiveData<Resource<GetQuotasByPlaceResponse>>
      get() = _getQuotasByPlace
 
-    fun setQuotasByResult(token: String) = viewModelScope.launch {
+    fun setQuotasByResult(token: String, id:String) = viewModelScope.launch {
         _getQuotasByPlace.value = Resource.Loading
-        _getQuotasByPlace.value = repository.getQuotasByPlace(token)
+        _getQuotasByPlace.value = repository.getQuotasByPlace(token, id)
     }
 }
