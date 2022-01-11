@@ -3,6 +3,8 @@ package apps.eduraya.e_parking.data.repository
 import apps.eduraya.e_parking.data.db.AppDao
 import apps.eduraya.e_parking.data.db.UserPreferences
 import apps.eduraya.e_parking.data.network.Api
+import apps.eduraya.e_parking.data.responses.DataDeposit
+import apps.eduraya.e_parking.data.responses.DataPayDeposit
 import apps.eduraya.e_parking.data.responses.UserInfo
 import apps.eduraya.e_parking.data.responses.user.UserData
 import javax.inject.Inject
@@ -43,6 +45,22 @@ class AppsRepository @Inject constructor(
 
     fun insertUserInfoDB(userInfo: UserInfo){
         appDao.insertUserInfo(userInfo)
+    }
+
+    suspend fun createDeposit(token: String, nominal: String) = safeApiCall {
+        api.createDeposit(token, nominal)
+    }
+
+    suspend fun getTokenDeposit(tokenAccess: String, id: String) = safeApiCall{
+        api.getTokenDeposit(tokenAccess, id)
+    }
+
+    suspend fun saveDepositToken(token: String) {
+        preferences.saveAccessTokens(token)
+    }
+
+    suspend fun getAllDeposit(tokenAccess: String) = safeApiCall{
+        api.getAllDeposit(tokenAccess)
     }
 
 }

@@ -27,6 +27,11 @@ class UserPreferences @Inject constructor(@ApplicationContext context: Context) 
             preferences[REFRESH_TOKEN]
         }
 
+    val depositToken: Flow<String?>
+        get() = appContext.dataStore.data.map { preferences ->
+            preferences[DEPOSIT_TOKEN]
+        }
+
     suspend fun saveAccessTokens(accessToken: String) {
         appContext.dataStore.edit { preferences ->
             preferences[ACCESS_TOKEN] = accessToken
@@ -42,6 +47,7 @@ class UserPreferences @Inject constructor(@ApplicationContext context: Context) 
     companion object {
         private val ACCESS_TOKEN = stringPreferencesKey("key_access_token")
         private val REFRESH_TOKEN = stringPreferencesKey("key_refresh_token")
+        private val DEPOSIT_TOKEN = stringPreferencesKey("key_deposit_token")
     }
 
 }

@@ -1,6 +1,8 @@
 package apps.eduraya.e_parking.data.db
 
 import androidx.room.*
+import apps.eduraya.e_parking.data.responses.DataDeposit
+import apps.eduraya.e_parking.data.responses.DataPayDeposit
 import apps.eduraya.e_parking.data.responses.UserInfo
 import apps.eduraya.e_parking.data.responses.user.UserData
 

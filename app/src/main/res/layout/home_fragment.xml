@@ -126,14 +126,13 @@
                             app:layout_constraintTop_toBottomOf="@+id/tv_ket_saldo"
                             app:layout_constraintVertical_bias="0.0" />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/img_profile"
+                        <ImageView
+                            android:id="@+id/btn_deposit"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_marginEnd="16dp"
                             android:background="@drawable/ic_baseline_add_card_24"
                             android:scaleType="centerCrop"
-                            android:tint="@color/white"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -367,7 +366,14 @@
     </ScrollView>
 
 
-
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

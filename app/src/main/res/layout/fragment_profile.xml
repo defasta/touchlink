@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:text="Akun Saya"
             android:textColor="@color/white"
+            android:textStyle="bold"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,8 +1,7 @@
 package apps.eduraya.e_parking.data.network
 
-import apps.eduraya.e_parking.data.responses.GetPlacesResponse
-import apps.eduraya.e_parking.data.responses.LoginResponse
-import apps.eduraya.e_parking.data.responses.SignUpResponse
+import apps.eduraya.e_parking.data.responses.*
+import apps.eduraya.e_parking.data.responses.deposit.GetDepositResponse
 import apps.eduraya.e_parking.data.responses.getplace.GetQuotasByPlaceResponse
 import apps.eduraya.e_parking.data.responses.user.GetDataUserResponse
 import retrofit2.http.*
@@ -39,4 +38,22 @@ interface Api: BaseApi {
         @Header("Authorization") authHeader: String,
         @Path("id") id: String,
     ): GetQuotasByPlaceResponse
+
+    @FormUrlEncoded
+    @POST("deposits")
+    suspend fun createDeposit(
+        @Header("Authorization") authHeader: String,
+        @Field("amount") nominal: String
+    ):CreateDepositResponse
+
+    @POST("deposits/{id}/pay")
+    suspend fun getTokenDeposit(
+        @Header("Authorization") authHeader: String,
+        @Path("id") id:String
+    ): PayDepositResponse
+
+    @GET("deposits")
+    suspend fun getAllDeposit(
+        @Header("Authorization") authHeader: String
+    ):GetDepositResponse
 }

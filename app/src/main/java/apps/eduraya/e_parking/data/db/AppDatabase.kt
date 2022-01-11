@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import apps.eduraya.e_parking.data.responses.DataDeposit
+import apps.eduraya.e_parking.data.responses.DataPayDeposit
 import apps.eduraya.e_parking.data.responses.UserInfo
 
 @Database(entities = [UserInfo::class], version =1, exportSchema = false)

@@ -18,7 +18,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,8 +25,6 @@ import apps.eduraya.e_parking.R
 import apps.eduraya.e_parking.data.db.UserPreferences
 import apps.eduraya.e_parking.data.network.Resource
 import apps.eduraya.e_parking.data.responses.ListDataPlace
-import apps.eduraya.e_parking.data.responses.UserInfo
-import apps.eduraya.e_parking.data.responses.getplace.ListDataQuotasByPlace
 import apps.eduraya.e_parking.databinding.ActivityMapsBinding
 import apps.eduraya.e_parking.ui.home.HomeActivity
 import apps.eduraya.e_parking.ui.maps.adapter.MapsAdapter
@@ -71,7 +68,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
         }
 
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT >= 2) {
             setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
             window.statusBarColor = Color.TRANSPARENT
         }
@@ -194,12 +191,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     private fun getMarker(placeResultsArrayList: ArrayList<ListDataPlace?>?) {
         for (i in placeResultsArrayList?.indices!!) {
-//            currentLatLng = LatLng(strCurrentLatitude, strCurrentLongitude)
             mapsView.isMyLocationEnabled = true
-//            mapsView.addMarker(MarkerOptions()
-//                .title("Lokasi Anda")
-//                .position(currentLatLng)
-//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))
 
             //set LatLong from API
             val latLngMarker = LatLng(
@@ -213,7 +205,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
 //                    .title(quotasResultsByArrayList!![i]?.quotaValet.toString() +" kuota parkir di "+placeResultsArrayList!![i]?.name))
                     .title(placeResultsArrayList!![i]?.name))
-                    .showInfoWindow()
 
 
             //show Marker
@@ -236,7 +227,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mapsView.addMarker(MarkerOptions()
                 .position(markerPosition)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
-//                .showInfoWindow()
 
             var markerSelected = -1
             for (i in placeResultsArrayList?.indices!!) {
@@ -249,7 +239,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             mapsAdapter.notifyDataSetChanged()
             binding.rvListLocation.smoothScrollToPosition(markerSelected)
-//            marker.showInfoWindow()
             false
         }
     }

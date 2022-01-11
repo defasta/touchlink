@@ -17,4 +17,16 @@
         android:label="action_profile"
         tools:layout="@layout/fragment_profile" />
 
+    <fragment
+        android:id="@+id/actionRecent"
+        android:name="apps.eduraya.e_parking.ui.recent.RecentFragment"
+        android:label="action_recent"
+        tools:layout="@layout/fragment_recent"/>
+
+    <fragment
+        android:id="@+id/actionPayment"
+        android:name="apps.eduraya.e_parking.ui.payment.PaymentFragment"
+        android:label="action_payment"
+        tools:layout="@layout/fragment_payment"/>
+
 </navigation>

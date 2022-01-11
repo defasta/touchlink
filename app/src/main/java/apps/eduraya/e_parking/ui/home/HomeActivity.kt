@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(view)
         navController = Navigation.findNavController(this, R.id.nav_host_fragment )
         binding.bottomNav.setupWithNavController(navController)
-        binding.bottomNav.menu.getItem(1).isEnabled = false
+        binding.bottomNav.menu.getItem(2).isEnabled = false
         binding.bottomNav.background = null
         binding.fab.setOnClickListener {
             startActivity(Intent(this, ScanQrActivity::class.java))
