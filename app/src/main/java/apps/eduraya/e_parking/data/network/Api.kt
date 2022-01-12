@@ -4,6 +4,7 @@ import apps.eduraya.e_parking.data.responses.*
 import apps.eduraya.e_parking.data.responses.deposit.GetDepositResponse
 import apps.eduraya.e_parking.data.responses.getplace.GetQuotasByPlaceResponse
 import apps.eduraya.e_parking.data.responses.user.GetDataUserResponse
+import apps.eduraya.e_parking.data.responses.vehicle.GetAllVehicleResponse
 import retrofit2.http.*
 
 interface Api: BaseApi {
@@ -56,4 +57,9 @@ interface Api: BaseApi {
     suspend fun getAllDeposit(
         @Header("Authorization") authHeader: String
     ):GetDepositResponse
+
+    @GET("vehicles")
+    suspend fun getAllDVehicle(
+        @Header("Authorization") authHeader: String
+    ):GetAllVehicleResponse
 }

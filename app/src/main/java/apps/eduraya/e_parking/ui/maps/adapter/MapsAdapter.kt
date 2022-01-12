@@ -85,17 +85,31 @@ class MapsAdapter(private val context: Context) : RecyclerView.Adapter<MapsAdapt
         val placeResult = placeResultArrayList[position]
         val quotasResult = quotasResultArrayList
 
-        //set rating
-//        val newValue = modelResult.rating.toDouble()
-//        holder.ratingBar.numStars = 5
-//        holder.ratingBar.stepSize = 0.5.toDouble().toFloat()
-//        holder.ratingBar.rating = newValue.toFloat()
+
+        holder.tvSpaceMobilReguler.isVisible = false
+        holder.tvSpaceMobilValet.isVisible = false
+        holder.tvSpaceMotorValet.isVisible = false
+        holder.tvSpaceMotorReguler.isVisible = false
+
         holder.tvNamaJalan.text = placeResult?.address
         holder.tvNamaLokasi.text = placeResult?.name
-//        holder.tvSpaceMobilReguler.isVisible = false
-//        holder.tvSpaceMobilValet.isVisible = false
-//        holder.tvSpaceMotorValet.isVisible = false
-//        holder.tvSpaceMotorReguler.isVisible = false
+        placeResult?.quotas?.forEach {
+            if(it?.vehicleId == 1){
+                holder.tvSpaceMotorValet.isVisible = true
+                holder.tvSpaceMotorReguler.isVisible = true
+
+                holder.tvSpaceMotorValet.text = "Motor: " + it.quotaValet.toString()
+                holder.tvSpaceMotorReguler.text = "Motor: " + it.quotaRegular.toString()
+            }
+            if(it?.vehicleId == 2) {
+                holder.tvSpaceMobilReguler.isVisible = true
+                holder.tvSpaceMobilValet.isVisible = true
+
+                holder.tvSpaceMobilReguler.text = "Mobil: " + it.quotaRegular.toString()
+                holder.tvSpaceMobilValet.text = "Mobil: " + it.quotaValet.toString()
+            }
+        }
+
 
 //        quotasResult.forEach {
 //            if (it?.vehicleId.toString() == "1"){

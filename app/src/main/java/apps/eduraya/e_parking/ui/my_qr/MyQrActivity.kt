@@ -1,17 +1,14 @@
-package apps.eduraya.e_parking.ui.myqr
+package apps.eduraya.e_parking.ui.my_qr
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidmads.library.qrgenearator.QRGEncoder
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import apps.eduraya.e_parking.R
 import apps.eduraya.e_parking.data.responses.UserInfo
 import apps.eduraya.e_parking.databinding.ActivityMyQrBinding
 import apps.eduraya.e_parking.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import android.R.dimen
 import android.graphics.Bitmap
 import android.graphics.Point
 import android.view.Display

@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.E_Parking">
         <activity
+            android:name=".ui.vehicle_type.ChooseVehicleActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.deposit.PaymentWebViewActivity"
             android:exported="true" />
         <activity
@@ -30,10 +33,10 @@
             android:name=".ui.deposit.CreateDepositActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.scan.ScanQrActivity"
+            android:name=".ui.scan_qr.ScanQrActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.myqr.MyQrActivity"
+            android:name=".ui.my_qr.MyQrActivity"
             android:exported="true"
             android:parentActivityName=".ui.home.HomeActivity" />
         <activity
@@ -43,12 +46,8 @@
             android:name=".ui.maps.MapsActivity"
             android:exported="true"
             android:parentActivityName=".ui.home.HomeActivity" />
-
-
         <activity android:name=".ui.auth.AuthActivity" />
-        <activity android:name=".ui.home.HomeActivity">
-
-        </activity>
+        <activity android:name=".ui.home.HomeActivity"></activity>
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">

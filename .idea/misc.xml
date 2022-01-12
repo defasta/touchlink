@@ -30,6 +30,7 @@
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/ic_rute.xml" value="0.271875" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/drawable/shape_bottom_nav.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_auth.xml" value="0.1" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_choose_vehicle.xml" value="0.33" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_create_deposit.xml" value="0.1" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -51,7 +52,7 @@
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/item_list_feature.xml" value="0.25" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/item_list_valet.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/list_item_deposit.xml" value="0.22" />
-        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/list_item_location.xml" value="0.25" />
+        <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/list_item_location.xml" value="0.67" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/layout/toolbar_maps.xml" value="0.35597826086956524" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/apdef/Eduraya/E_Parking/app/src/main/res/xml/network_security_config.xml" value="0.2015625" />

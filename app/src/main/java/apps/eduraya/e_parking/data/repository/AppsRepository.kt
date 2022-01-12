@@ -63,4 +63,8 @@ class AppsRepository @Inject constructor(
         api.getAllDeposit(tokenAccess)
     }
 
+    suspend fun getALlVehicle(tokenAccess:String) = safeApiCall {
+        api.getAllDVehicle(tokenAccess)
+    }
+
 }

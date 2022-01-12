@@ -1,4 +1,4 @@
-package apps.eduraya.e_parking.ui.scan
+package apps.eduraya.e_parking.ui.scan_qr
 
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import apps.eduraya.e_parking.R
 import apps.eduraya.e_parking.databinding.ActivityScanQrBinding
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner

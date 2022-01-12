@@ -9,8 +9,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import apps.eduraya.e_parking.R
 import apps.eduraya.e_parking.databinding.ActivityHomeBinding
-import apps.eduraya.e_parking.startNewActivity
-import apps.eduraya.e_parking.ui.scan.ScanQrActivity
+import apps.eduraya.e_parking.ui.scan_qr.ScanQrActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
