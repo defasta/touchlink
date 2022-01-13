@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class GetAllVehicleResponse(
     val code: Int,
-    val `data`: List<DataVehicle>,
+    val `data`: ArrayList<DataVehicle>,
     val message: String,
     val success: Boolean
 ): Parcelable

@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.E_Parking">
         <activity
-            android:name=".ui.vehicle_type.ChooseVehicleActivity"
+            android:name=".ui.valet.ChooseVehicleActivity"
             android:exported="true" />
         <activity
             android:name=".ui.deposit.PaymentWebViewActivity"
@@ -40,7 +40,7 @@
             android:exported="true"
             android:parentActivityName=".ui.home.HomeActivity" />
         <activity
-            android:name=".ui.valet.ValetBookingActivity"
+            android:name=".ui.valet.ChooseValetAreaActivity"
             android:exported="true" />
         <activity
             android:name=".ui.maps.MapsActivity"

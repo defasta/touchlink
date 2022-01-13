@@ -4,6 +4,7 @@ import apps.eduraya.e_parking.data.responses.*
 import apps.eduraya.e_parking.data.responses.deposit.GetDepositResponse
 import apps.eduraya.e_parking.data.responses.getplace.GetQuotasByPlaceResponse
 import apps.eduraya.e_parking.data.responses.user.GetDataUserResponse
+import apps.eduraya.e_parking.data.responses.valet.GetValetAreaResponse
 import apps.eduraya.e_parking.data.responses.vehicle.GetAllVehicleResponse
 import retrofit2.http.*
 
@@ -58,8 +59,14 @@ interface Api: BaseApi {
         @Header("Authorization") authHeader: String
     ):GetDepositResponse
 
-    @GET("vehicles")
+    @GET("utils/vehicles")
     suspend fun getAllDVehicle(
         @Header("Authorization") authHeader: String
     ):GetAllVehicleResponse
+
+    @GET("places/{id}/valet-areas")
+    suspend fun getValetAreasByPlace(
+        @Header("Authorization") authHeader: String,
+        @Path("id") id:String
+    ): GetValetAreaResponse
 }

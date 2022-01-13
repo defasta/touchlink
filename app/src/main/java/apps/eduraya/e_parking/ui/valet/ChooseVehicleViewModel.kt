@@ -1,4 +1,4 @@
-package apps.eduraya.e_parking.ui.vehicle_type
+package apps.eduraya.e_parking.ui.valet
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,11 +19,16 @@ class ChooseVehicleViewModel @Inject constructor(
 ):BaseViewModel(repository){
 
     companion object {
+        const val KEY_ID_PLACE = "KEY_ID_PLACE"
         const val KEY_NAME_PLACE = "KEY_NAME_PLACE"
         const val KEY_ADDRESS_PLACE = "KEY_ADDRESS_PLACE"
         const val KEY_TOTAL_MOTOR = "KEY_TOTAL_MOTOR"
         const val KEY_TOTAL_CAR = "KEY_TOTAL_CAR"
     }
+
+    private val _idPlace = savedStateHandle.getLiveData<String>(KEY_ID_PLACE)
+    val idPlace: LiveData<String>
+        get() = _idPlace
 
     private val _namePlace = savedStateHandle.getLiveData<String>(KEY_NAME_PLACE)
     val namePlace: LiveData<String>

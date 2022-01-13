@@ -67,4 +67,8 @@ class AppsRepository @Inject constructor(
         api.getAllDVehicle(tokenAccess)
     }
 
+    suspend fun getValetAreasByPlace(tokenAccess: String, id:String) = safeApiCall {
+        api.getValetAreasByPlace(tokenAccess, id)
+    }
+
 }

@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <FrameLayout
@@ -141,36 +141,25 @@
                 </LinearLayout>
                 </LinearLayout>
 
-<!--                <RatingBar-->
-<!--                    android:id="@+id/ratingBar"-->
-<!--                    style="@style/Widget.AppCompat.RatingBar.Small"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="10dp"-->
-<!--                    android:progressTint="@color/red" />-->
-
-
-
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearRute"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
+                android:id="@+id/actionValet"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/bg_circle_radius"
                 android:backgroundTint="@color/red"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:layout_gravity="end">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_baseline_edit_calendar_24"
-                    android:gravity="center"
-                    android:layout_margin="8dp"
-                    android:text="Booking tempat"
+                    android:layout_gravity="center_vertical"
+                    android:text="Booking Valet"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />

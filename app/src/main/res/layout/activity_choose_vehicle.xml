@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.vehicle_type.ChooseVehicleActivity">
+    tools:context=".ui.valet.ChooseVehicleActivity">
 
     <FrameLayout
         android:id="@+id/frameLayout2"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Valet Booking"
+            android:text="Pilih Jenis Valet"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -50,17 +50,29 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/place_name"
+                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Lokasi Parkir"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/place_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="Place Name"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -70,18 +82,20 @@
                 android:layout_marginTop="16dp"
                 android:src="@drawable/ic_baseline_location_on_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12"
                 app:tint="@color/red" />
 
 
             <TextView
                 android:id="@+id/tv_address"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="address"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toBottomOf="@+id/place_name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -114,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -143,7 +157,7 @@
                         android:layout_marginBottom="16dp"
                         android:text="0"
                         android:textColor="@android:color/black"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -170,7 +184,7 @@
                         android:layout_marginBottom="16dp"
                         android:text="0"
                         android:textColor="@android:color/black"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -205,7 +219,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -247,26 +261,17 @@
                             android:layout_height="wrap_content"
                             android:text="Tiap 0 jam berikutnya: Rp. 0" />
 
-                        <LinearLayout
+                        <Button
                             android:id="@+id/bookingMotor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="10dp"
+                            android:text="Pilih Valet"
                             android:background="@drawable/bg_circle_radius"
                             android:backgroundTint="@color/red"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"/>
 
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:gravity="center"
-                                android:text="Pilih Valet"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -319,26 +324,16 @@
                             android:layout_height="wrap_content"
                             android:text="Tiap 0 jam berikutnya: Rp. 0" />
 
-                        <LinearLayout
+                        <Button
                             android:id="@+id/bookingCar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="10dp"
+                            android:text="Pilih Valet"
                             android:background="@drawable/bg_circle_radius"
                             android:backgroundTint="@color/red"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:gravity="center"
-                                android:text="Pilih Valet"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
+                            android:orientation="horizontal"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
