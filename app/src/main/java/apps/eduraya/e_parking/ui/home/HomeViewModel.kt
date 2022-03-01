@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import apps.eduraya.e_parking.data.network.Resource
 import apps.eduraya.e_parking.data.repository.AppsRepository
 import apps.eduraya.e_parking.data.responses.UserInfo
+import apps.eduraya.e_parking.data.responses.insurance.GetInsuranceResponse
+import apps.eduraya.e_parking.data.responses.lastparking.GetLastParkingResponse
 import apps.eduraya.e_parking.data.responses.user.GetDataUserResponse
 import apps.eduraya.e_parking.data.responses.user.UserData
 import apps.eduraya.e_parking.ui.base.BaseViewModel
@@ -41,5 +43,47 @@ class HomeViewModel @Inject constructor(
     fun setUserInfoResponse(token: String) = viewModelScope.launch{
         _getUserInfoResponse.value = Resource.Loading
         _getUserInfoResponse.value = repository.getUserData(token)
+    }
+
+    private val _getInsuranceInfoResponse: MutableLiveData<Resource<GetInsuranceResponse>> = MutableLiveData()
+    val getInsuranceResponse: LiveData<Resource<GetInsuranceResponse>>
+        get() = _getInsuranceInfoResponse
+
+    fun setInsuranceInfoResponse(token: String) = viewModelScope.launch {
+        _getInsuranceInfoResponse.value = Resource.Loading
+        _getInsuranceInfoResponse.value = repository.getInsurance(token)
+    }
+
+    private val _getLastParkingResponse: MutableLiveData<Resource<GetLastParkingResponse>> = MutableLiveData()
+    val getLastParkingResponse:LiveData<Resource<GetLastParkingResponse>>
+        get() = _getLastParkingResponse
+
+    fun setLastParkingResponse(token: String) = viewModelScope.launch {
+        _getLastParkingResponse.value = Resource.Loading
+        _getLastParkingResponse.value = repository.getLastParking(token)
+    }
+
+    suspend fun saveInsurancePriceInfo(insuranceInfo: String){
+        repository.saveInsurancePriceInfo(insuranceInfo)
+    }
+
+    suspend fun saveInsuranceDetailInfo(insuranceDetail: String){
+        repository.saveInsuranceDetailInfo(insuranceDetail)
+    }
+
+    suspend fun saveIdLastParking(id:String){
+        repository.saveIdLastParking(id)
+    }
+
+    suspend fun isInsurance(isInsurance:String){
+        repository.isInsurance(isInsurance)
+    }
+
+    suspend fun isCheckin(isCheckin:String){
+        repository.isCheckin(isCheckin)
+    }
+
+    suspend fun logoutAccount(){
+        repository.logoutAccount()
     }
 }

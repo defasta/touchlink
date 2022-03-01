@@ -31,6 +31,10 @@ class CreateDepositActivity : AppCompatActivity() {
 
         alertBuilder = AlertDialog.Builder(this)
 
+        binding.navBack.setOnClickListener {
+            onBackPressed()
+        }
+
         binding.progressbar.visible(false)
         binding.buttonProceed.enable(false)
 

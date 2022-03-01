@@ -27,8 +27,36 @@ class AppsRepository @Inject constructor(
         api.getUserData(token)
     }
 
+    suspend fun changeProfile(tokenAccess: String, name:String, email:String, avatar:String, phone: String) = safeApiCall {
+        api.changeProfile(tokenAccess, name, email, avatar, phone)
+    }
+
     suspend fun saveAccessTokens(accessToken: String){
         preferences.saveAccessTokens(accessToken)
+    }
+
+    suspend fun saveInsurancePriceInfo(insurancePrice: String){
+        preferences.saveInsurancePriceInfo(insurancePrice)
+    }
+
+    suspend fun saveInsuranceDetailInfo(insuranceDetail: String){
+        preferences.saveInsuranceDetailInfo(insuranceDetail)
+    }
+
+    suspend fun saveIdLastParking(id:String){
+        preferences.saveIdLastParking(id)
+    }
+
+    suspend fun isInsurance(isInsurance:String){
+        preferences.isInsurance(isInsurance)
+    }
+
+    suspend fun isCheckin(isCheckin:String){
+        preferences.isCheckin(isCheckin)
+    }
+
+    suspend fun logoutAccount(){
+        preferences.clear()
     }
 
     suspend fun getPlaces(token: String) = safeApiCall {
@@ -69,6 +97,22 @@ class AppsRepository @Inject constructor(
 
     suspend fun getValetAreasByPlace(tokenAccess: String, id:String) = safeApiCall {
         api.getValetAreasByPlace(tokenAccess, id)
+    }
+
+    suspend fun createReservation(tokenAccess: String, valetAreaId: String, checkIn: String) = safeApiCall {
+        api.createReservation(tokenAccess, valetAreaId, checkIn)
+    }
+
+    suspend fun getAllReservation(tokenAccess: String) = safeApiCall {
+        api.getAllReservation(tokenAccess)
+    }
+
+    suspend fun getInsurance(tokenAccess: String) = safeApiCall{
+        api.getInsurance(tokenAccess)
+    }
+
+    suspend fun getLastParking(tokenAccess: String) = safeApiCall {
+        api.getLastParking(tokenAccess)
     }
 
 }

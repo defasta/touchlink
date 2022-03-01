@@ -72,4 +72,5 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(
         val password = binding.editTextTextPassword.text.toString().trim()
         viewModel.login(email, password)
     }
+
 }

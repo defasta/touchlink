@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.E_Parking">
         <activity
+            android:name=".ui.insurance.InsuranceActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.valet.ChooseVehicleActivity"
             android:exported="true" />
         <activity
@@ -47,7 +53,7 @@
             android:exported="true"
             android:parentActivityName=".ui.home.HomeActivity" />
         <activity android:name=".ui.auth.AuthActivity" />
-        <activity android:name=".ui.home.HomeActivity"></activity>
+        <activity android:name=".ui.home.HomeActivity" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">

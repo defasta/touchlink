@@ -48,7 +48,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
 //                        )
                         Log.d("TOKEN USER", it.value.data?.token.toString())
                         //requireActivity().startNewActivity(HomeActivity::class.java)
-                        requireView().snackbar("Berhasil membuat akun!")
+                        requireView().snackbar("Buat akun berhasil! Silakan melakukan Login untuk melanjutkan")
                         val direction = SignUpFragmentDirections.actionSignUpFragmentToLoginFragment()
                         authentionNavController?.navigate(direction)
                     }
@@ -69,7 +69,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(
             val passwordC = binding.editTextTextPasswordC.text.toString()
             if (password != passwordC){
                 binding.editTextTextPasswordC.requestFocus()
-                binding.editTextTextPasswordC.setError("Invalid password!")
+                binding.editTextTextPasswordC.setError("Password tidak valid!")
             } else signUp()
         }
 

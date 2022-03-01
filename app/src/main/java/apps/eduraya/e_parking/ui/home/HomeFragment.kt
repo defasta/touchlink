@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import apps.eduraya.e_parking.data.db.UserPreferences
 import apps.eduraya.e_parking.data.network.Resource
 import apps.eduraya.e_parking.databinding.HomeFragmentBinding
+import apps.eduraya.e_parking.rupiah
 import apps.eduraya.e_parking.startAnActivity
 import apps.eduraya.e_parking.ui.base.BaseFragment
 import apps.eduraya.e_parking.ui.deposit.CreateDepositActivity
@@ -29,10 +30,6 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
 
         binding.cvSearch.setOnClickListener {
             requireActivity().startAnActivity(MapsActivity::class.java)
-        }
-
-        binding.cvMyqr.setOnClickListener {
-            requireActivity().startAnActivity(MyQrActivity::class.java)
         }
 
         binding.btnDeposit.setOnClickListener {
@@ -58,7 +55,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>(HomeFragmentBinding::infl
                     is Resource.Success -> {
                         lifecycleScope.launch {
                             binding.username.text = it.value.data?.user?.name
-                            binding.tvSaldo.text = "Rp. ${it.value.data?.user?.balance.toString()}"
+                            binding.tvSaldo.text = rupiah(it.value.data?.user?.balance!!.toDouble())
                         }
                     }
                     is Resource.Failure -> Toast.makeText(context, "Gagal memuat data", Toast.LENGTH_SHORT).show()

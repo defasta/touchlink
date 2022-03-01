@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import apps.eduraya.e_parking.data.responses.deposit.DataDeposit
 import apps.eduraya.e_parking.databinding.ListItemDepositBinding
+import apps.eduraya.e_parking.rupiah
 
 class PaymentAdapter(val items: ArrayList<DataDeposit>) :RecyclerView.Adapter<PaymentAdapter.PaymentViewHoder>() {
     private var onItemClickCallback: OnItemClickCallback? = null
@@ -47,7 +48,7 @@ class PaymentAdapter(val items: ArrayList<DataDeposit>) :RecyclerView.Adapter<Pa
         val listDeposit = items[position]
 
         holder.bind(listDeposit)
-        holder.tvAmount.text = listDeposit.amount.toString()
+        holder.tvAmount.text = rupiah(listDeposit.amount.toDouble())
         holder.tvStatus.text = listDeposit.status
 
     }

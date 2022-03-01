@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import apps.eduraya.e_parking.data.network.Resource
 import apps.eduraya.e_parking.data.repository.AppsRepository
+import apps.eduraya.e_parking.data.responses.reservation.ReservationResponse
 import apps.eduraya.e_parking.data.responses.valet.GetValetAreaResponse
 import apps.eduraya.e_parking.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -57,5 +58,18 @@ class ChooseValetAreaViewModel @Inject constructor(
     ) = viewModelScope.launch {
         _getAllValetAreaResponse.value = Resource.Loading
         _getAllValetAreaResponse.value = repository.getValetAreasByPlace(token, id)
+    }
+
+    private val _getReservationResponse: MutableLiveData<Resource<ReservationResponse>> = MutableLiveData()
+    val getReservationResponse: LiveData<Resource<ReservationResponse>>
+        get() = _getReservationResponse
+
+    fun setReservationResponse(
+        token: String,
+        valetAreaId: String,
+        checkIn: String
+    ) = viewModelScope.launch {
+        _getReservationResponse.value = Resource.Loading
+        _getReservationResponse.value = repository.createReservation(token, valetAreaId, checkIn)
     }
 }

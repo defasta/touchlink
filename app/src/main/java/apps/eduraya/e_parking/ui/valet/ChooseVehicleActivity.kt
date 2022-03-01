@@ -12,7 +12,10 @@ import apps.eduraya.e_parking.data.db.UserPreferences
 import apps.eduraya.e_parking.data.network.Resource
 import apps.eduraya.e_parking.databinding.ActivityChooseVehicleBinding
 import apps.eduraya.e_parking.enable
+import apps.eduraya.e_parking.rupiah
 import apps.eduraya.e_parking.visible
+import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,6 +31,10 @@ class ChooseVehicleActivity : AppCompatActivity() {
 
         binding.bookingMotor.enable(false)
         binding.bookingCar.enable(false)
+
+        binding.navBack.setOnClickListener {
+            onBackPressed()
+        }
 
         viewModel.namePlace.observe(this, Observer {
             binding.placeName.text = it
@@ -64,12 +71,14 @@ class ChooseVehicleActivity : AppCompatActivity() {
                     lifecycleScope.launch {
                         it.value.data.forEach { dataVehicle ->
                             if (dataVehicle.id == 1){
-                                binding.tvBasicMotor.text = "Tarif ${dataVehicle.basicDuration} jam pertama : ${dataVehicle.basicPrice}"
-                                binding.tvProgressiveMotor.text = "Tiap ${dataVehicle.progressiveDuration} jam berikutnya : ${dataVehicle.progressivePrice}"
+                                Glide.with(applicationContext).load("https://api.e-parkingjogja.com"+dataVehicle.icon).into(binding.ivMotor)
+                                binding.tvBasicMotor.text = "Tarif ${dataVehicle.basicDuration} jam pertama : ${rupiah(dataVehicle.basicPrice.toDouble())}"
+                                binding.tvProgressiveMotor.text = "Tiap ${dataVehicle.progressiveDuration} jam berikutnya : ${rupiah(dataVehicle.progressivePrice.toDouble())}"
                             }
                             if (dataVehicle.id == 2){
-                                binding.tvBasicCar.text = "Tarif ${dataVehicle.basicDuration} jam pertama : ${dataVehicle.basicPrice}"
-                                binding.tvProgressiveCar.text = "Tiap ${dataVehicle.progressiveDuration} jam berikutnya : ${dataVehicle.progressivePrice}"
+                                Glide.with(applicationContext).load("https://api.e-parkingjogja.com"+dataVehicle.icon).into(binding.ivMobil)
+                                binding.tvBasicCar.text = "Tarif ${dataVehicle.basicDuration} jam pertama : ${rupiah(dataVehicle.basicPrice.toDouble())}"
+                                binding.tvProgressiveCar.text = "Tiap ${dataVehicle.progressiveDuration} jam berikutnya : ${rupiah(dataVehicle.progressivePrice.toDouble())}"
                             }
                         }
 
@@ -79,20 +88,32 @@ class ChooseVehicleActivity : AppCompatActivity() {
         })
 
         binding.bookingMotor.setOnClickListener {
-            viewModel.idPlace.observe(this, Observer {id ->
-                startActivity(Intent(this@ChooseVehicleActivity, ChooseValetAreaActivity::class.java).apply {
-                    putExtra("KEY_ID_PLACE", id)
-                    putExtra("KEY_ID_VEHICLE", "1")
-                })
+            userPreferences.isCheckin.asLiveData().observe(this, Observer {
+                if (it == "0"){
+                    Toast.makeText(this@ChooseVehicleActivity, "Anda hanya diizinkan memesan satu valet.", Toast.LENGTH_SHORT).show()
+                }else if(it == "1"){
+                    viewModel.idPlace.observe(this, Observer {id ->
+                        startActivity(Intent(this@ChooseVehicleActivity, ChooseValetAreaActivity::class.java).apply {
+                            putExtra("KEY_ID_PLACE", id)
+                            putExtra("KEY_ID_VEHICLE", "1")
+                        })
+                    })
+                }
             })
         }
 
         binding.bookingCar.setOnClickListener {
-            viewModel.idPlace.observe(this, Observer {id ->
-                startActivity(Intent(this@ChooseVehicleActivity, ChooseValetAreaActivity::class.java).apply {
-                    putExtra("KEY_ID_PLACE", id)
-                    putExtra("KEY_ID_VEHICLE", "2")
-                })
+            userPreferences.isCheckin.asLiveData().observe(this, Observer {
+                if (it == "0"){
+                    Toast.makeText(this@ChooseVehicleActivity, "Anda hanya diizinkan memesan satu valet.", Toast.LENGTH_SHORT).show()
+                }else if(it == "1"){
+                    viewModel.idPlace.observe(this, Observer {id ->
+                        startActivity(Intent(this@ChooseVehicleActivity, ChooseValetAreaActivity::class.java).apply {
+                            putExtra("KEY_ID_PLACE", id)
+                            putExtra("KEY_ID_VEHICLE", "2")
+                        })
+                    })
+                }
             })
         }
     }

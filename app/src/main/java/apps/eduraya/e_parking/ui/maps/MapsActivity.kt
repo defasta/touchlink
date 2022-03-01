@@ -17,6 +17,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
@@ -191,7 +192,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     private fun getMarker(placeResultsArrayList: ArrayList<ListDataPlace?>?) {
         for (i in placeResultsArrayList?.indices!!) {
-            mapsView.isMyLocationEnabled = true
+//            mapsView.isMyLocationEnabled = true
 
             //set LatLong from API
             val latLngMarker = LatLng(

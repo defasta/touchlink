@@ -13,6 +13,7 @@ import apps.eduraya.e_parking.data.db.UserPreferences
 import apps.eduraya.e_parking.data.network.Resource
 import apps.eduraya.e_parking.databinding.ActivityPayDepositBinding
 import apps.eduraya.e_parking.enable
+import apps.eduraya.e_parking.rupiah
 import apps.eduraya.e_parking.ui.home.HomeActivity
 import apps.eduraya.e_parking.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +35,10 @@ class PayDepositActivity : AppCompatActivity() {
 
         val userPreferences = UserPreferences(this)
 
+        binding.navBack.setOnClickListener {
+            onBackPressed()
+        }
+
         viewModel.statusDeposit.observe(this, Observer {
             if (it == "PENDING"){
                 binding.ivStatus.setImageDrawable(getDrawable(R.drawable.ic_baseline_pending_24))
@@ -51,7 +56,7 @@ class PayDepositActivity : AppCompatActivity() {
 
         })
         viewModel.amountDeposit.observe(this, Observer {
-            binding.tvNominal.text = "Rp. $it"
+            binding.tvNominal.text = rupiah(it.toDouble())
         })
 
         viewModel.payDepositResponse.observe(this, Observer {

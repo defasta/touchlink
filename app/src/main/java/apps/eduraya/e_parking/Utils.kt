@@ -6,6 +6,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import apps.eduraya.e_parking.data.network.Resource
 import com.google.android.material.snackbar.Snackbar
+import java.text.NumberFormat
+import java.util.*
 
 fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {
     Intent(this, activity).also {
@@ -73,6 +75,12 @@ fun Fragment.handleApiError(
             requireView().snackbar(error)
         }
     }
+}
+
+fun rupiah(number: Double): String {
+    val LocaleID = Locale("in", "ID")
+    val numberFormat = NumberFormat.getCurrencyInstance(LocaleID)
+    return numberFormat.format(number).toString()
 }
 
 

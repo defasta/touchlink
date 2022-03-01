@@ -2,12 +2,14 @@ package apps.eduraya.e_parking.ui.valet
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
@@ -18,6 +20,7 @@ import apps.eduraya.e_parking.data.db.UserPreferences
 import apps.eduraya.e_parking.data.network.Resource
 import apps.eduraya.e_parking.data.responses.valet.DataValetArea
 import apps.eduraya.e_parking.databinding.ActivityChooseValetAreaBinding
+import apps.eduraya.e_parking.ui.home.HomeActivity
 import apps.eduraya.e_parking.ui.valet.adapter.ValetAreaAdapter
 import apps.eduraya.e_parking.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +33,7 @@ import kotlin.collections.ArrayList
 class ChooseValetAreaActivity : AppCompatActivity() {
     private val viewModel by viewModels<ChooseValetAreaViewModel>()
     private lateinit var binding : ActivityChooseValetAreaBinding
+    private lateinit var alertBuilder: AlertDialog.Builder
     lateinit var valetAreaAdapter: ValetAreaAdapter
 
     var formate = SimpleDateFormat("YYYY-MM-dd", Locale.US)
@@ -41,7 +45,12 @@ class ChooseValetAreaActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.navBack.setOnClickListener {
+            onBackPressed()
+        }
+
         val userPreferences = UserPreferences(this)
+        alertBuilder = AlertDialog.Builder(this)
 
         viewModel.timePicked.observe(this, Observer { time->
             viewModel.datePicked.observe(this, Observer { date ->
@@ -70,11 +79,29 @@ class ChooseValetAreaActivity : AppCompatActivity() {
                                                 binding.rvValetArea.visible(true)
                                                 binding.rvValetArea.layoutManager = LinearLayoutManager(this@ChooseValetAreaActivity)
                                                 binding.rvValetArea.adapter = valetAreaAdapter
+//                                                userPreferences.isCheckin.asLiveData().observe(this@ChooseValetAreaActivity, Observer { isCheckin ->
+//                                                    valetAreaAdapter.setOnItemClickCallback(object :ValetAreaAdapter.OnItemClickCallback{
+//                                                        override fun onItemClicked(dataValetArea: DataValetArea) {
+//                                                            if (isCheckin == "1"){
+//                                                                createReservation(dataValetArea)
+//                                                            }else if(isCheckin == "0"){
+//                                                                Toast.makeText(this@ChooseValetAreaActivity, "Anda hanya diizinkan memesan satu valet",Toast.LENGTH_SHORT).show()
+//                                                            }
+//                                                        }
+//                                                    })
+//                                                })
                                                 valetAreaAdapter.setOnItemClickCallback(object :ValetAreaAdapter.OnItemClickCallback{
                                                     override fun onItemClicked(dataValetArea: DataValetArea) {
-                                                        Toast.makeText(this@ChooseValetAreaActivity, "Berhasil", Toast.LENGTH_SHORT).show()
+//                                                        if (isCheckin == "1"){
+//
+//                                                        }else if(isCheckin == "0"){
+//                                                            Toast.makeText(this@ChooseValetAreaActivity, "Anda hanya diizinkan memesan satu valet",Toast.LENGTH_SHORT).show()
+//                                                        }
+                                                        createReservation(dataValetArea)
                                                     }
                                                 })
+
+
                                             }
                                         is Resource.Failure -> Toast.makeText(this, "Gagal memuat data.",Toast.LENGTH_SHORT).show()
                                     }
@@ -131,6 +158,30 @@ class ChooseValetAreaActivity : AppCompatActivity() {
             now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DAY_OF_MONTH))
             datePicker.show()
 
+    }
+
+    private fun createReservation(dataValetArea: DataValetArea){
+        val userPreferences = UserPreferences(this)
+        userPreferences.accessToken.asLiveData().observe(this, Observer { tokenAccess ->
+            viewModel.datePicked.observe(this, Observer { date ->
+                viewModel.timePicked.observe(this, Observer { time ->
+                    viewModel.setReservationResponse("Bearer $tokenAccess", dataValetArea.id.toString(), "$date $time")
+                    viewModel.getReservationResponse.observe(this, Observer {
+                        binding.progressbar.visible(it is Resource.Loading)
+                        when(it){
+                            is Resource.Success ->
+                                lifecycleScope.launch {
+                                    Toast.makeText(this@ChooseValetAreaActivity, "Berhasil melakukan reservasi", Toast.LENGTH_SHORT).show()
+                                    startActivity(Intent(this@ChooseValetAreaActivity, HomeActivity::class.java))
+                                    finishAffinity()
+                                }
+                            is Resource.Failure -> Toast.makeText(this, "Terjadi kesalahan",Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                })
+            })
+
+        })
 
     }
 }

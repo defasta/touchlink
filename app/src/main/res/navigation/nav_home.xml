@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/actionRecent"
-        android:name="apps.eduraya.e_parking.ui.recent.RecentFragment"
+        android:name="apps.eduraya.e_parking.ui.reservation.ReservationFragment"
         android:label="action_recent"
-        tools:layout="@layout/fragment_recent"/>
+        tools:layout="@layout/fragment_reservation"/>
 
     <fragment
         android:id="@+id/actionPayment"
