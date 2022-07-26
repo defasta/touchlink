@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/actionHome"
-        android:name="apps.eduraya.e_parking.ui.home.HomeFragment"
+        android:name="apps.eduraya.edurayaapp.ui.home.HomeFragment"
         android:label="action_home"
         tools:layout="@layout/home_fragment" />
 
     <fragment
         android:id="@+id/actionProfile"
-        android:name="apps.eduraya.e_parking.ui.profile.ProfileFragment"
+        android:name="apps.eduraya.edurayaapp.ui.profile.ProfileFragment"
         android:label="action_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/actionRecent"
-        android:name="apps.eduraya.e_parking.ui.reservation.ReservationFragment"
+        android:name="apps.eduraya.edurayaapp.ui.reservation.ReservationFragment"
         android:label="action_recent"
         tools:layout="@layout/fragment_reservation"/>
 
     <fragment
         android:id="@+id/actionPayment"
-        android:name="apps.eduraya.e_parking.ui.payment.PaymentFragment"
+        android:name="apps.eduraya.edurayaapp.ui.payment.PaymentFragment"
         android:label="action_payment"
         tools:layout="@layout/fragment_payment"/>
 

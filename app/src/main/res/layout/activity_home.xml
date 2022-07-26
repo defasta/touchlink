@@ -32,15 +32,5 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/app_name"
-        app:rippleColor="@color/red"
-        android:src="@drawable/ic_baseline_qr_code_scanner_24"
-        android:background="@color/red"
-        app:backgroundTint="@color/red"
-        app:layout_anchor="@id/bottomAppBar"
-        app:tint="@color/white"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
