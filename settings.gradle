@@ -9,5 +9,5 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "EdurayaApp"
+rootProject.name = "Genius"
 include ':app'

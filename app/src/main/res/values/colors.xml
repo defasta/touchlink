@@ -9,11 +9,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#F32F2F</color>
 
-    <color name="colorTextDefault">#131313</color>
+    <color name="colorTextDefault">#000000</color>
     <color name="colorTextLabelDefault">#353535</color>
     <color name="colorTextHintDefault">#434343</color>
 
     <color name="colorBrightRed">#FFEDED</color>
+    <color name="colorOrange">#042743</color>
+    <color name="colorOrangeDark">#02233C</color>
+    <color name="colorOrangeSecondary">#44698B</color>
 
     <color name="colorTextWhite">#F3F3F3</color>
     <color name="colorGreyRed">#F8AFAF</color>

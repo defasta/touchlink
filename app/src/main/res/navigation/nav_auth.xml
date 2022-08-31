@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="apps.eduraya.edurayaapp.ui.auth.login.LoginFragment"
+        android:name="apps.eduraya.genius.ui.auth.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="apps.eduraya.edurayaapp.ui.auth.register.SignUpFragment"
+        android:name="apps.eduraya.genius.ui.auth.register.SignUpFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_sign_up" >
         <action

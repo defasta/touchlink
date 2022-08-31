@@ -12,7 +12,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "apps.eduraya.edurayaapp"
+        applicationId "apps.eduraya.genius"
         minSdk 24
         targetSdk 31
         versionCode 1

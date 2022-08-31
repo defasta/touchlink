@@ -3,30 +3,24 @@
     android:id="@+id/nav_home"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/actionHome">
+    app:startDestination="@id/actionDashboard">
+
+    <fragment
+        android:id="@+id/actionDashboard"
+        android:name="apps.eduraya.genius.ui.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/actionHome"
-        android:name="apps.eduraya.edurayaapp.ui.home.HomeFragment"
-        android:label="action_home"
+        android:name="apps.eduraya.genius.ui.classroom.HomeFragment"
+        android:label="Kelas"
         tools:layout="@layout/home_fragment" />
 
     <fragment
         android:id="@+id/actionProfile"
-        android:name="apps.eduraya.edurayaapp.ui.profile.ProfileFragment"
-        android:label="action_profile"
+        android:name="apps.eduraya.genius.ui.profile.ProfileFragment"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
-
-    <fragment
-        android:id="@+id/actionRecent"
-        android:name="apps.eduraya.edurayaapp.ui.reservation.ReservationFragment"
-        android:label="action_recent"
-        tools:layout="@layout/fragment_reservation"/>
-
-    <fragment
-        android:id="@+id/actionPayment"
-        android:name="apps.eduraya.edurayaapp.ui.payment.PaymentFragment"
-        android:label="action_payment"
-        tools:layout="@layout/fragment_payment"/>
 
 </navigation>
