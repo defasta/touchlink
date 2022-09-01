@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class EditProfileResponse(
     val code: Int? = null,
-    val `data`: DataProfile? = null,
+    val data: DataProfile? = null,
     val message: String? = null,
     val success: Boolean? = null
 ): Parcelable

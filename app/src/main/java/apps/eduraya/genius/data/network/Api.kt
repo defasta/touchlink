@@ -78,31 +78,37 @@ interface Api {
         @Path("id") id: String
     ): GetDetailContentResponse
 
+//    @Multipart
+//    @POST("profile/{id}")
+//    suspend fun changeProfile(
+//        @Header("Authorization") authHeader: String,
+//        @Path("id") id: String,
+//        @Part("name") name:RequestBody,
+//        @Part("birth_date") birth_date: RequestBody,
+//        @Part("birth_place") birth_place: RequestBody,
+//        @Part("address") address: RequestBody,
+//        @Part photo: MultipartBody.Part,
+//        @Part("educational_level") educational_level: RequestBody,
+//    ):EditProfileResponse
+
     @Multipart
     @POST("profile/{id}")
     suspend fun changeProfile(
         @Header("Authorization") authHeader: String,
         @Path("id") id: String,
         @Part("name") name:RequestBody,
-        @Part("birth_date") birth_date: RequestBody,
-        @Part("birth_place") birth_place: RequestBody,
+        @Part("birth_date") birthDate: RequestBody,
+        @Part("birth_place") birthPlace: RequestBody,
         @Part("address") address: RequestBody,
-        @Part photo: MultipartBody.Part,
-        @Part("educational_level") educational_level: RequestBody,
+        @Part("educational_level") educationalLevel: RequestBody,
     ):EditProfileResponse
 
     @FormUrlEncoded
-    @POST("auth/request-reset-password")
-    suspend fun requestResetPassword(
-        @Field("email") email:String,
-    ): RequestResetPasswordResponse
-
-    @FormUrlEncoded
-    @POST("auth/reset-password")
+    @POST("changePassword")
     suspend fun resetPassword(
-        @Field("email") email:String,
-        @Field("token") token:String,
+        @Header("Authorization") authHeader: String,
+        @Field("id") email:String,
         @Field("password") password:String,
-        @Field("password_confirmation") passwordC:String,
+        @Field("new_password") passwordC:String,
     ): RequestResetPasswordResponse
 }

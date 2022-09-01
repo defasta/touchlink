@@ -53,8 +53,8 @@ class AppsRepository @Inject constructor(
         api.getDetailContent(token, contentId)
     }
 
-    suspend fun changeProfile(tokenAccess: String, id: String, name:RequestBody, birthDay: RequestBody, birthPlace: RequestBody, address: RequestBody, photo:MultipartBody.Part, educationalLevel: RequestBody) = safeApiCall {
-        api.changeProfile(tokenAccess, id, name, birthDay, birthPlace, address, photo, educationalLevel)
+    suspend fun changeProfile(tokenAccess: String, id: String, name:RequestBody, birthDay:RequestBody, birthPlace: RequestBody, address:RequestBody, educationalLevel: RequestBody) = safeApiCall {
+        api.changeProfile(tokenAccess, id, name, birthDay, birthPlace, address, educationalLevel)
     }
 
     suspend fun saveAccessTokens(accessToken: String){
@@ -69,11 +69,7 @@ class AppsRepository @Inject constructor(
         preferences.clear()
     }
 
-    suspend fun requestResetPassword(email:String) = safeApiCall {
-        api.requestResetPassword(email)
-    }
-
-    suspend fun resetPassword(email: String, token: String, password: String, passwordC: String) = safeApiCall {
-        api.resetPassword(email, token, password, passwordC)
+    suspend fun resetPassword(token: String, id: String, oldPassword: String, newPassword: String) = safeApiCall {
+        api.resetPassword(token, id, oldPassword, newPassword)
     }
 }

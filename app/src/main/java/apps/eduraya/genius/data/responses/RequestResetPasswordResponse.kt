@@ -7,5 +7,6 @@ import kotlinx.parcelize.Parcelize
 data class RequestResetPasswordResponse(
     val code: Int? = null,
     val message: String? = null,
-    val success: Boolean? = null
+    val success: Boolean? = null,
+    val data:String? = null
 ): Parcelable

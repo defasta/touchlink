@@ -11,23 +11,14 @@ import javax.inject.Inject
 @HiltViewModel
 class ResetPasswordViewModel @Inject constructor(
     private val repository: AppsRepository,
-    savedStateHandle: SavedStateHandle
 ):ViewModel(){
-
-    companion object{
-        const val KEY_EMAIL = "KEY_EMAIL"
-    }
-
-    private val _email = savedStateHandle.getLiveData<String>(KEY_EMAIL)
-    val email : LiveData<String>
-        get() = _email
 
     private val _resetPasswordResponse: MutableLiveData<Resource<RequestResetPasswordResponse>> = MutableLiveData()
     val resetPasswordResponse: LiveData<Resource<RequestResetPasswordResponse>>
         get() = _resetPasswordResponse
 
-    fun resetPassword(email:String, token: String, password: String, passwordC:String) = viewModelScope.launch {
+    fun resetPassword(token: String, id:String, oldPassword: String, newPassword:String) = viewModelScope.launch {
         _resetPasswordResponse.value = Resource.Loading
-        _resetPasswordResponse.value = repository.resetPassword(email, token, password, passwordC)
+        _resetPasswordResponse.value = repository.resetPassword(token, id, oldPassword, newPassword)
     }
 }

@@ -65,12 +65,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_change_pict"
+                android:id="@+id/btn_change_password"
                 style="@style/ButtonPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:backgroundTint="@color/colorOrange"
-                android:text="Ubah Foto"
+                android:text="Ubah Password"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_profile" />
@@ -84,7 +84,7 @@
                 android:layout_marginTop="32dp"
                 android:text="Nama"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_change_pict" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_change_password" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName"

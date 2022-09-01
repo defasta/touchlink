@@ -54,7 +54,9 @@ class HomeActivity : AppCompatActivity() {
         val userPreferences = UserPreferences(this)
         userPreferences.accessToken.asLiveData().observe(this, androidx.lifecycle.Observer { token ->
             userPreferences.userId.asLiveData().observe(this, Observer { userId ->
-                viewModel.getUserInfo("Bearer $token", userId!!)
+                if(userId != null){
+                    viewModel.getUserInfo("Bearer $token", userId!!)
+                }
             })
         })
 

@@ -59,6 +59,8 @@ class DetailContentActivity : AppCompatActivity() {
                     lifecycleScope.launch {
                         if (it.value.data?.type == "video"){
                             val uri: Uri = Uri.parse(it.value.data.videoUrl)
+                            binding.videoView.visible(true)
+                            binding.webView.visible(false)
                             binding.videoView.setVideoURI(uri)
                             mediaController.setAnchorView(binding.videoView)
                             mediaController.setMediaPlayer(binding.videoView)

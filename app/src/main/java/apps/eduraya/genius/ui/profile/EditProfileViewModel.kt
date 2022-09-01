@@ -66,8 +66,8 @@ class EditProfileViewModel @Inject constructor(
         _datePicked.postValue(date)
     }
 
-    fun editProfile(tokenAccess: String, id: String, name:RequestBody, birthDay: RequestBody, birthPlace: RequestBody, address: RequestBody, photo:MultipartBody.Part, educationalLevel: RequestBody) = viewModelScope.launch {
+    fun editProfile(tokenAccess: String, id: String,  name:RequestBody, birthDay:RequestBody, birthPlace: RequestBody, address:RequestBody, educationalLevel: RequestBody) = viewModelScope.launch {
         _editProfileResponse.value = Resource.Loading
-        _editProfileResponse.value = repository.changeProfile(tokenAccess, id, name, birthDay, birthPlace, address, photo, educationalLevel)
+        _editProfileResponse.value = repository.changeProfile(tokenAccess, id, name, birthDay, birthPlace, address, educationalLevel)
     }
 }

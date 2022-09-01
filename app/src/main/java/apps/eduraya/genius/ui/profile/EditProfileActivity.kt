@@ -33,6 +33,7 @@ import apps.eduraya.genius.*
 import apps.eduraya.genius.data.db.UserPreferences
 import apps.eduraya.genius.data.network.Resource
 import apps.eduraya.genius.databinding.ActivityEditProfileBinding
+import apps.eduraya.genius.ui.auth.forgot_password.ResetPasswordActivity
 import apps.eduraya.genius.ui.classroom.HomeActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -113,32 +114,8 @@ class EditProfileActivity : AppCompatActivity() {
             }
         })
 
-        binding.btnChangePict.setOnClickListener {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-                if (checkPermissionForReadWrite(this)) {
-                    openGallery()
-                } else {
-                    requestPermissionForReadWrite(this)
-                }
-
-            } else {
-                if (isPermissionGrantedForMediaLocationAccess(this)) {
-                    getPickImageIntent()
-                } else {
-                    Log.i("Tag", "else chooseFile")
-                    requestPermissionForAccessMediaLocation(this)
-                }
-            }
-//            val checkSelfPermission = ContextCompat.checkSelfPermission(this,
-//                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//            if (checkSelfPermission != PackageManager.PERMISSION_GRANTED){
-//                //Requests permissions to be granted to this application at runtime
-//                ActivityCompat.requestPermissions(this,
-//                    arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
-//            }
-//            else{
-//                openGallery()
-//            }
+        binding.btnChangePassword.setOnClickListener {
+            startAnActivity(ResetPasswordActivity::class.java)
         }
 
         binding.btnChooseDate.setOnClickListener {
@@ -146,92 +123,46 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         binding.btnSave.setOnClickListener {
-            imagePath = ""
-            if(imagePath != null){
-                val userPreferences = UserPreferences(this)
-                userPreferences.accessToken.asLiveData().observe(this, Observer {token->
-                    userPreferences.userId.asLiveData().observe(this, Observer { id ->
-                        val name = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(), binding.editTextTextPersonName.text.toString().trim())
+            val userPreferences = UserPreferences(this)
+            userPreferences.accessToken.asLiveData().observe(this, Observer {token->
+                userPreferences.userId.asLiveData().observe(this, Observer { id ->
+                    val name = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(),binding.editTextTextPersonName.text.toString().trim())
 
-                        val address = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(),binding.editTextAddress.text.toString().trim())
+                    val address = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(), binding.editTextAddress.text.toString().trim())
 
-                        val educationalLevel = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(),binding.editTextEducation.text.toString().trim())
+                    val educationalLevel = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(),binding.editTextEducation.text.toString().trim())
 
-                        val birthDate = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(),binding.tvBirthDate.text.toString().trim())
+                    val birthDate = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(),binding.tvBirthDate.text.toString().trim())
 
-                        val birthPlace = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(),binding.editTextBirthPlace.text.toString().trim())
+                    val birthPlace = okhttp3.RequestBody.create("text/plain".toMediaTypeOrNull(), binding.editTextBirthPlace.text.toString().trim())
 
-                        val photoBody = okhttp3.RequestBody.create("image/*".toMediaTypeOrNull(), File(imagePath))
-
-                        val avatar = MultipartBody.Part.createFormData("photo", File(imagePath).name, photoBody)
-
-                        viewModel.editProfile(token!!, id!! ,name, birthDate, birthPlace,  address, avatar,educationalLevel)
-                    })
-
-
+                    viewModel.editProfile("Bearer $token", id!! ,name, birthDate, birthPlace,  address, educationalLevel)
                 })
+            })
 
-                viewModel.editProfileResponse.observe(this, Observer {
-                    binding.progressbar.visible(it is Resource.Loading)
-                    when(it){
-                        is Resource.Success ->
-                            lifecycleScope.launch {
-                                startAnActivity(HomeActivity::class.java)
-                                finishAffinity()
-                            }
+            viewModel.editProfileResponse.observe(this, Observer {
+                binding.progressbar.visible(it is Resource.Loading)
+                when(it){
+                    is Resource.Success ->
+                        lifecycleScope.launch {
+                            onBackPressed()
+//                            startAnActivity(HomeActivity::class.java)
+//                            finishAffinity()
+                        }
 
-                        is Resource.Failure -> {
-                            if(it.isNetworkError){
-                                view.snackbar("Mohon cek koneksi internet Anda!")
-                            }else{
-                                view.snackbar("Gagal memuat data. Silahkan tunggu beberapa saat")
-                            }
+                    is Resource.Failure -> {
+                        if(it.isNetworkError){
+                            view.snackbar("Mohon cek koneksi internet Anda!")
+                        }else{
+                            view.snackbar("Gagal memuat data. Silahkan tunggu beberapa saat")
                         }
                     }
-                })
-            }else{
-                Toast.makeText(this, "Silakan upload foto terlebih dahulu", Toast.LENGTH_SHORT).show()
-            }
-
+                }
+            })
         }
 
-
-//        val setPermission = Build.VERSION.SDK_INT
-//        if (setPermission > Build.VERSION_CODES.LOLLIPOP_MR1) {
-//            if (checkIfAlreadyhavePermission()) {
-//            } else {
-//                requestPermissions(permissionArrays, 101)
-//            }
-//        }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        if (queryImageUrl.isNotEmpty()) {
-
-//                Glide.with(this@EditProfileActivity)
-//                    .asBitmap()
-//                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                    .skipMemoryCache(true)
-//                    .load(queryImageUrl)
-//                    .into(binding.imgProfile)
-
-            val bitmap = BitmapFactory.decodeFile(queryImageUrl)
-
-            binding.imgProfile.setImageBitmap(bitmap)
-        }
-
-        GlobalScope.launch(Dispatchers.Main) {
-            if (imagePath != null) {
-                val bitmap = BitmapFactory.decodeFile(imagePath)
-                binding.imgProfile.setImageBitmap(bitmap)
-            }
-            else {
-                show("ImagePath is null")
-            }
-        }
-    }
 
     private fun checkPermissionForReadWrite(context: Context): Boolean {
         val result: Int =
@@ -300,25 +231,6 @@ class EditProfileActivity : AppCompatActivity() {
         intent.type = "image/*"
         startActivityForResult(intent, OPERATION_CHOOSE_PHOTO)
     }
-
-//    private fun checkIfAlreadyhavePermission(): Boolean {
-//        val result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//        return result == PackageManager.PERMISSION_GRANTED
-//    }
-
-//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>
-//                                            , grantedResults: IntArray) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantedResults)
-//        when(requestCode){
-//            101 ->
-//                if (grantedResults.isNotEmpty() && grantedResults.get(0) ==
-//                    PackageManager.PERMISSION_GRANTED){
-//                    openGallery()
-//                }else {
-//                    show("Unfortunately You are Denied Permission to Perform this Operataion.")
-//                }
-//        }
-//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
