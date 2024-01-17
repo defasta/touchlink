@@ -1,4 +1,4 @@
-# Eduraya App
+# Touchlink App
 
 ## Project Name
 Touchlink Android App.
